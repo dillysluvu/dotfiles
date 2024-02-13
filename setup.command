@@ -17,6 +17,7 @@ sudo install lazygit /usr/local/bin
 //tmux 
 sudo apt install tmux 
 sudo app install libevent-dev ncurses-dev build-essential bison pkg-config 
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 //NeoVim
 sudo apt install neovim
 //LazyVim
