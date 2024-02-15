@@ -1,6 +1,11 @@
 //preset 
 sudo apt install git
 sudo apt install npm
+
+//zsh
+sudo apt install zsh
+curl sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 //support
 sudo apt install fzf
 sudo apt install zoxide
@@ -18,8 +23,10 @@ sudo install lazygit /usr/local/bin
 sudo apt install tmux 
 sudo app install libevent-dev ncurses-dev build-essential bison pkg-config 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 //NeoVim
 sudo apt install neovim
+
 //LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim 
 rm -rf ~/.config/nvim/.git
