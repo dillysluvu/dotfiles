@@ -18,6 +18,9 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
+//kitty
+sudo apt install kitty -y
+sudo update-alternatives --config x-terminal-emulator
   
 //tmux 
 sudo apt install tmux 
