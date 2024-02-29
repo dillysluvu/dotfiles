@@ -1,5 +1,5 @@
 //preset 
-sudo dnf install git
+sudo dnf install git -y
 sudo dnf install npm
 sudo dnf install rust cargo
 
@@ -27,7 +27,7 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
 //kitty
-sudo dnf install kitty -y
+sudo dnf install kitty 
 sudo update-alternatives --config x-terminal-emulator
   
 //tmux 
@@ -44,3 +44,11 @@ sudo dnf install neovim
 //LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim 
 rm -rf ~/.config/nvim/.git
+//vlc 
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install vlc
+//asustl 
+sudo dnf install cmake clang-devel systemd-devel glib2-devel cairo-devel atkmm-devel pangomm-devel gdk-pixbuf2-devel gtk3-devel libappindicator-gtk3
+make
+
