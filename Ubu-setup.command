@@ -1,6 +1,7 @@
 //preset 
 sudo dnf install git
 sudo dnf install npm
+sudo dnf install rust cargo
 
 sudo yum install curl
 sudo yum install make
