@@ -3,7 +3,6 @@ sudo dnf install git
 sudo dnf install npm
 
 sudo yum install curl
-sudo yum install git
 sudo yum install make
 sudo yum install bison
 sudo yum install gcc
