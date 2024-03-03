@@ -13,6 +13,19 @@ sudo yum install glibc-devel
 sudo dnf install zsh
 curl sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+//fish
+sudo dnf install fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install IlanCosman/tide@v6
+fisher install jethrokuan/z
+sudo dnf install eza
+fisher install PatrickF1/fzf.fish
+
+git clone https://github.com/x-motemen/ghq .
+make install
+
+
+
 //support
 sudo dnf install fzf
 sudo dnf install zoxide
