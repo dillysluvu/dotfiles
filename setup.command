@@ -20,6 +20,8 @@ fisher install IlanCosman/tide@v6
 fisher install jethrokuan/z
 sudo dnf install eza
 fisher install PatrickF1/fzf.fish
+echo /usr/local/bin/fish | sudo tee -a /etc/shells
+chsh -s /usr/bin/fish
 
 git clone https://github.com/x-motemen/ghq .
 make install
