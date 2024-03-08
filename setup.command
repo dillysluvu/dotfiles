@@ -22,7 +22,6 @@ sudo dnf install eza
 fisher install PatrickF1/fzf.fish
 echo /usr/local/bin/fish | sudo tee -a /etc/shells
 chsh -s /usr/bin/fish
-
 git clone https://github.com/x-motemen/ghq .
 make install
 
@@ -59,11 +58,12 @@ sudo dnf install neovim
 //LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim 
 rm -rf ~/.config/nvim/.git
-//vlc 
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf install vlc
+
 //asustl 
 sudo dnf install cmake clang-devel systemd-devel glib2-devel cairo-devel atkmm-devel pangomm-devel gdk-pixbuf2-devel gtk3-devel libappindicator-gtk3
 make
+
+//snap
+sudo dnf install snap
+sudo snap install gitkraken --classic
 
