@@ -45,8 +45,9 @@ sudo dnf install neovim
 git clone https://github.com/LazyVim/starter ~/.config/nvim 
 rm -rf ~/.config/nvim/.git
 
+//nvchad
+bash <(curl -s https://raw.githubusercontent.com/Alexis12119/nvim-config/main/installer/install.sh)
 
 //asustl 
 sudo dnf install cmake clang-devel systemd-devel glib2-devel cairo-devel atkmm-devel pangomm-devel gdk-pixbuf2-devel gtk3-devel libappindicator-gtk3
 make
-
