@@ -35,6 +35,12 @@ sudo dnf install tmux
 sudo dnf install libevent-dev ncurses-dev build-essential bison pkg-config 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+//starship
+curl -sS https://starship.rs/install.sh | sh
+cd ~/.config 
+touch starship.toml 
+cd 
+
 //nothing 
 zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
