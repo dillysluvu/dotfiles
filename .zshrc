@@ -3,7 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
+export PATH="$HOME/.local/bin:$PATH"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -105,7 +105,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-
+eval "$(zoxide init zsh)"
+export PATH="$PATH:/opt/nvim-linux64/bin"
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 [[ -s "/home/uyvu/.gvm/scripts/gvm" ]] && source "/home/uyvu/.gvm/scripts/gvm"
+
+[[ -s "/home/mcv/.gvm/scripts/gvm" ]] && source "/home/mcv/.gvm/scripts/gvm"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fpath+=${ZDOTDIR:-~}/.zsh_functions

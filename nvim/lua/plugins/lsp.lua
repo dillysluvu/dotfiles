@@ -11,7 +11,6 @@ return {
         "shfmt",
         "tailwindcss-language-server",
         "typescript-language-server",
-        "css-lsp",
         "clangd",
       })
     end,
@@ -24,7 +23,6 @@ return {
       inlay_hints = { enabled = false },
       ---@type lspconfig.options
       servers = {
-        cssls = {},
         tailwindcss = {
           root_dir = function(...)
             return require("lspconfig.util").root_pattern(".git")(...)
