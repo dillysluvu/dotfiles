@@ -107,7 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim/"
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 [[ -s "/home/uyvu/.gvm/scripts/gvm" ]] && source "/home/uyvu/.gvm/scripts/gvm"
 
@@ -117,3 +117,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+export HELIX_RUNTIME=~/src/helix/runtime
+export STARSHIP_CONFIG=/home/mcv/.config/starship/starship.toml
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+export PATH="/home/mcv/depot_tools:$PATH"# Set up fzf key bindings and fuzzy completion
