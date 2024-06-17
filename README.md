@@ -3,8 +3,9 @@
 This is my config file, yeah, but it's not really mine because I referenced it from many sources. Sorry that I don't remember to cite the sources I referenced, but if you're interested in my config, you can simply run a few commands, like me:
 
 ## Preview
-!(~/Projects/dotfiles/1.png)
-!(~/Projects/dotfiles/2.png)
+
+![1](https://github.com/dillysluvu/dotfiles/assets/141432067/d2397d91-2256-45f2-8c54-ad1a8af78bcc)
+![2](https://github.com/dillysluvu/dotfiles/assets/141432067/09151b5c-c7d2-40c2-83d9-d315b4ea0b3f)
 
 ## Installation
 
