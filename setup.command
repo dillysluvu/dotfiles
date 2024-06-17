@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Update and upgrade the system
 sudo apt update -y
 sudo apt upgrade -y
@@ -59,8 +57,9 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install Starship prompt
 curl -sS https://starship.rs/install.sh | sh
 
-# Install GVM (Go Version Manager)
+# Install GVM (Go Version Manager) and NVM (Node Version Manager )
 zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 # Install NeoVim
 sudo nala install neovim -y
