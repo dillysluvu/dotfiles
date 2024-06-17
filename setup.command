@@ -4,27 +4,32 @@
 sudo apt update -y
 sudo apt upgrade -y
 
+# replace apt package 
+
+sudo nala install nala -y
+sudo nala fetch
+
 # Install necessary packages
-sudo apt install git -y
-sudo apt install npm -y
-sudo apt install rustc cargo -y
-sudo apt install curl -y
-sudo apt install make -y
-sudo apt install bison -y
-sudo apt install gcc -y
-sudo apt install libc6-dev -y
+sudo nala install git -y
+sudo nala install npm -y
+sudo nala install rustc cargo -y
+sudo nala install curl -y
+sudo nala install make -y
+sudo nala install bison -y
+sudo nala install gcc -y
+sudo nala install libc6-dev -y
 
 # Install Zsh
-sudo apt install zsh -y
+sudo nala install zsh -y
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Install support tools
-sudo apt install fzf -y
-sudo apt install zoxide -y
-sudo apt install ripgrep -y
-sudo apt install fd-find -y
-sudo apt install neofetch -y
-sudo apt install bat -y
+sudo nala install fzf -y
+sudo nala install zoxide -y
+sudo nala install ripgrep -y
+sudo nala install fd-find -y
+sudo nala install neofetch -y
+sudo nala install bat -y
 
 # Install LazyGit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
@@ -33,40 +38,25 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 
 # Install Kitty terminal emulator
-sudo apt install kitty -y
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo nala update
+sudo nala install wezterm
 sudo update-alternatives --config x-terminal-emulator
 
 # Install Tmux and dependencies
-sudo apt install tmux -y
-sudo apt install libevent-dev -y
-sudo apt install ncurses-dev -y
-sudo apt install build-essential -y
-sudo apt install pkg-config -y
+sudo nala install tmux -y
+sudo nala install libevent-dev -y
+sudo nala install ncurses-dev -y
+sudo nala install build-essential -y
+sudo nala install pkg-config -y
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Install Starship prompt
 curl -sS https://starship.rs/install.sh | sh
-mkdir -p ~/.config
-touch ~/.config/starship.toml
 
 # Install GVM (Go Version Manager)
 zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
 # Install NeoVim
-sudo apt install neovim -y
-
-# Set up LazyVim configuration
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-
-# Install additional packages for Asustl
-sudo apt install cmake -y
-sudo apt install clang -y
-sudo apt install systemd -y
-sudo apt install libglib2.0-dev -y
-sudo apt install libcairo2-dev -y
-sudo apt install libatkmm-1.6-dev -y
-sudo apt install libpangomm-1.4-dev -y
-sudo apt install libgdk-pixbuf2.0-dev -y
-sudo apt install libgtk-3-dev -y
-sudo apt install libappindicator3-dev -y
+sudo nala install neovim -y
