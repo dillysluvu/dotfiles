@@ -70,3 +70,6 @@ mv ~/Projects/dotfiles/wezterm ~/.config/
 mv ~/Projects/dotfiles/tmux ~/.config/
 mv ~/Projects/dotfiles/starship.toml ~/.config/
 mv ~/Projects/dotfiles/.zshrc $HOME
+
+# Source the new .zshrc
+source ~/.zshrc
