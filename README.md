@@ -2,6 +2,10 @@
 
 This is my config file, yeah, but it's not really mine because I referenced it from many sources. Sorry that I don't remember to cite the sources I referenced, but if you're interested in my config, you can simply run a few commands, like me:
 
+## Preview
+!(~/Projects/dotfiles/1.png)
+!(~/Projects/dotfiles/2.png)
+
 ## Installation
 
 1. Initialize a directory for configuration data:
