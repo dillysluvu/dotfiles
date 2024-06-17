@@ -64,3 +64,13 @@ zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binsc
 
 # Install NeoVim
 sudo nala install neovim -y
+
+#  Config 
+mkdir -p ~/Projects
+cd ~/Projects
+git clone https://github.com/dillysluvu/dotfiles.git
+mv ~/Projects/dotfiles/nvim ~/.config/
+mv ~/Projects/dotfiles/wezterm ~/.config/
+mv ~/Projects/dotfiles/tmux ~/.config/
+mv ~/Projects/dotfiles/starship.toml ~/.config/
+mv ~/Projects/dotfiles/.zshrc $HOME
