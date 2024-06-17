@@ -4,7 +4,7 @@ This is my config file, yeah, but it's not really mine because I referenced it f
 
 ## Installation
 
-1. Create a directory to store the config:
+1. Initialize a directory for configuration data:
     ```sh
     mkdir -p ~/Projects
     cd ~/Projects
