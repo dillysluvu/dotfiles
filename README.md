@@ -22,6 +22,6 @@ This is my config file, yeah, but it's not really mine because I referenced it f
 
 3. Run the setup program:
     ```sh
-    chmod +x setup.command
-    ./setup.command
+    chmod +x setup.sh
+    ./setup.sh
     ```
