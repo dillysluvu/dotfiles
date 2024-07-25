@@ -13,6 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
+    {
+      "stevearc/resession.nvim",
+      opts = {},
+    },
     -- add LazyVim and import its plugins
     {
       "LazyVim/LazyVim",
