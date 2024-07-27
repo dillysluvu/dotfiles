@@ -61,15 +61,25 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 # Install NeoVim
 sudo dnf install neovim -y
 
-# Config
-mv ~/Projects/dotfiles/nvim ~/.config/
-mv ~/Projects/dotfiles/wezterm ~/.config/
-mv ~/Projects/dotfiles/tmux ~/.config/
-mv ~/Projects/dotfiles/starship.toml ~/.config/
-mv ~/Projects/dotfiles/.zshrc $HOME
+# Prompt for configuration version
+read -p "Do you want my v1 config or v2? (1/2): " config_version
+if [[ "$config_version" == "1" ]]; then
+    mv ~/Projects/dotfiles/V1/nvim ~/.config/
+    mv ~/Projects/dotfiles/wezterm ~/.config/
+    mv ~/Projects/dotfiles/V1/tmux ~/.config/
+    mv ~/Projects/dotfiles/starship ~/.config/
+    mv ~/Projects/dotfiles/.zshrc $HOME
+elif [[ "$config_version" == "2" ]]; then
+    mv ~/Projects/dotfiles/V2/.vim $HOME
+    mv ~/Projects/dotfiles/V2/.vimrc $HOME
+    mv ~/Projects/dotfiles/wezterm ~/.config/
+    mv ~/Projects/dotfiles/V2/tmux ~/.config/
+    mv ~/Projects/dotfiles/starship ~/.config/
+    mv ~/Projects/dotfiles/.zshrc $HOME
+fi
 
 # Prompt for Fedora Linux base and ASUS laptop
-read -p "Do you use Fedora Linux or a Fedora-based Linux distribution on an ASUS laptop? (Yes/No): " response
+read -p "Do you use Fedora Linux base and ASUS laptop? (yes/no): " response
 if [[ "$response" == "yes" ]]; then
     sudo dnf install cmake clang-devel libinput-devel libseat-devel libgbm-devel libxkbcommon-devel systemd-devel libdrm-devel expat-devel pcre2-devel libzstd-devel gtk3-devel -y
     make
