@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/mcv/.config/tmux'
+let g:netrw_dirhist_7='/home/mcv/Code/cpp'
+let g:netrw_dirhist_6='/home/mcv/.vim'
+let g:netrw_dirhist_5='/home/mcv'
+let g:netrw_dirhist_4='/home/mcv/.config/tmux'
+let g:netrw_dirhist_3='/home/mcv/.config/tmux/plugins'
+let g:netrw_dirhist_2='/home/mcv/.config/tmux'
+let g:netrw_dirhist_1='/home/mcv/Code/cpp'
+let g:netrw_dirhist_0='/home/mcv/.config/tmux'
+let g:netrw_dirhist_9='/home/mcv'
