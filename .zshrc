@@ -55,3 +55,5 @@ source /home/mcv/.config/broot/launcher/bash/br
 # Add zsh functions path
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
+# Make Vim as default editor
+export EDITOR=vim
