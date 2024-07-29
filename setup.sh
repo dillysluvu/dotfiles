@@ -14,7 +14,7 @@ install_packages() {
     local packages=(
         git npm rustc cargo curl make bison gcc glibc-devel zsh fzf ripgrep fd-find 
         fastfetch btop cava bat wezterm tmux libevent-devel ncurses-devel @development-tools 
-        pkgconf-pkg-config neovim
+        pkgconf-pkg-config neovim unrar 
     )
     sudo dnf install -y "${packages[@]}"
 }
