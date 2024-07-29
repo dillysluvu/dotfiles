@@ -75,7 +75,7 @@ nnoremap rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 nnoremap <leader>e :Ex<CR>
 
 " Compile and run C++ script.
-nnoremap rr :w<CR>:!clear && cd %:p:h && g++ %:t -o %:t:r && ./%:t:r<CR>
+nnoremap <leader>r :w<CR>:!clear && cd %:p:h && g++ %:t -o %:t:r && ./%:t:r<CR>
 
 " Save the current file.
 nnoremap <C-s> :w<CR>
@@ -85,17 +85,6 @@ nnoremap <leader>q :q!<CR>
 
 " Ultimate remap for Esc.
 inoremap jk <Esc>
-
-" Disable auto-pairing in insert mode.
-inoremap ( (
-inoremap ) )
-inoremap [ [
-inoremap ] ]
-inoremap { {
-inoremap } }
-inoremap " "
-inoremap ' '
-inoremap ` `
 
 " Add freopen statements and sync settings below int main().
 map rn /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "r", stdin); freopen("<C-R>=expand('%:t:r')<CR>.out", "w", stdout);<CR>ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);<ESC>
