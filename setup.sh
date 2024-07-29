@@ -101,6 +101,64 @@ setup_asus_laptop() {
     fi
 }
 
+# Prompt the user to install Flatpak and add Flathub repository
+setup_flatpak() {
+    read -p "Do you want to install some Flatpak apps? (yes/no): " install_flatpak
+    if [[ "$install_flatpak" == "yes" ]]; then
+        sudo dnf install -y flatpak
+        sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+        
+        # Add Flatpak application installation functionality
+        install_flatpak_apps() {
+            local apps=(
+                "app.drey.Warp"
+                "com.github.KRTirtho.Spotube"
+                "com.github.flxzt.rnote"
+                "com.github.neithern.g4music"
+                "com.github.tchx84.Flatseal"
+                "com.github.wwmm.easyeffects"
+                "com.github.jakeman.ExtensionManager"
+                "dev.vencord.Vesktop"
+                "garden.jamie.Morphosis"
+                "io.bassi.Amberol"
+                "io.github.getnf.embellish"
+                "com.github.wiiznokes.fan-control"
+                "io.gitlab.adhami3310.Converter"
+                "io.github.missioncenter.MissionCenter"
+                "it.mijorus.gearlever"
+                "org.freac.freac"
+                "org.gnome.Extensions"
+                "org.gnome.gitlab.somas.Apostrophe"
+            )
+        
+            read -p "Would you like to install any Flatpak apps? (yes/no): " install_all
+        
+            if [[ "$install_all" == "yes" ]]; then
+                for app in "${apps[@]}"; do
+                    flatpak install -y flathub $app
+                done
+                echo "All apps have been installed."
+            else
+                for app in "${apps[@]}"; do
+                    read -p "Do you want to install $app? (yes/no): " response
+                    if [[ "$response" == "yes" ]]; then
+                        flatpak install -y flathub $app
+                    else
+                        echo "Skipping $app"
+                    fi
+                done
+                echo "Selected apps have been installed."
+            fi
+        
+            echo "Setup complete."
+        }
+        
+        install_flatpak_apps
+    else
+        echo "Skipping Flatpak app installations."
+    fi
+}
+
 # Main script execution
 update_system
 install_packages
@@ -112,6 +170,7 @@ install_starship
 install_version_managers
 configure_user
 setup_asus_laptop
+setup_flatpak
 
 # Source the new .zshrc
 source ~/.zshrc
