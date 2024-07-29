@@ -52,11 +52,11 @@ nnoremap <leader>l <C-w>l
 nnoremap <C-a> gg<S-v>G
 
 " Tab management key mappings.
-nnoremap te :tabedit<CR>
+nnoremap <leader>te :tabedit<CR>
 nnoremap <leader>t :tabnext<CR>
 nnoremap <leader>T :tabprev<CR>
-nnoremap tn :tabnew<CR>
-nnoremap tc :tabclose<CR>
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>tc :tabclose<CR>
 
 " Split window management.
 nnoremap <leader>s :split<CR>
@@ -69,13 +69,13 @@ nnoremap <silent> <leader><Up> :resize +1<CR>
 nnoremap <silent> <leader><Down> :resize -1<CR>
 
 " Replace text using the word under the cursor.
-nnoremap rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Open file explorer.
 nnoremap <leader>e :Ex<CR>
 
 " Compile and run C++ script.
-nnoremap <leader>r :w<CR>:!clear && cd %:p:h && g++ %:t -o %:t:r && ./%:t:r<CR>
+nnoremap <leader>rr :w<CR>:!clear && cd %:p:h && g++ %:t -o %:t:r && ./%:t:r<CR>
 
 " Save the current file.
 nnoremap <C-s> :w<CR>
@@ -87,7 +87,7 @@ nnoremap <leader>q :q!<CR>
 inoremap jk <Esc>
 
 " Add freopen statements and sync settings below int main().
-map rn /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "r", stdin); freopen("<C-R>=expand('%:t:r')<CR>.out", "w", stdout);<CR>ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);<ESC>
+map <leader>rn /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "r", stdin); freopen("<C-R>=expand('%:t:r')<CR>.out", "w", stdout);<CR>ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);<ESC>
 
 " Define a function to insert the C++ boilerplate code
 function! InsertCppBoilerplate()
@@ -111,7 +111,7 @@ endfunction
 nnoremap <leader>df :call InsertCppBoilerplate()<CR>
 
 " Map to auto split.
-nnoremap sp :vsplit<CR><C-w>l:split<CR><C-w>h:vertical resize +32<CR>
+nnoremap <leader>sp :vsplit<CR><C-w>l:split<CR><C-w>h:vertical resize +32<CR>
 
 " Vim-Plug plugin manager setup.
 call plug#begin()
