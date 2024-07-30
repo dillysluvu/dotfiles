@@ -87,27 +87,26 @@ nnoremap <leader>q :q!<CR>
 inoremap jk <Esc>
 
 " Add freopen statements and sync settings below int main().
-map <leader>rn /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "r", stdin); freopen("<C-R>=expand('%:t:r')<CR>.out", "w", stdout);<CR>ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);<ESC>
+map <leader>af /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "r", stdin); freopen("<C-R>=expand('%:t:r')<CR>.out", "w", stdout);
 
-" Define a function to insert the C++ boilerplate code
+" Define a function to insert the C++ boilerplate code.
 function! InsertCppBoilerplate()
-    " Get the base name of the current file without extension
+    " Get the base name of the current file without extension.
     let base_filename = expand('%:t:r')
 
-    " Define the full boilerplate code
+    " Define the full boilerplate code.
     let boilerplate = "#include <bits/stdc++.h>\n\n"
     let boilerplate .= "using namespace std;\n\n"
     let boilerplate .= "int main() {\n"
-    let boilerplate .= "    freopen(\"" . base_filename . ".inp\", \"r\", stdin);  freopen(\"" . base_filename . ".out\", \"w\", stdout);\n"
     let boilerplate .= "    ios_base::sync_with_stdio(false);    cin.tie(nullptr);    cout.tie(nullptr);\n\n"
     let boilerplate .= "    return 0;\n"
     let boilerplate .= "}\n"
 
-    " Insert the boilerplate code into the buffer
+    " Insert the boilerplate code into the buffer.
     call setline(1, split(boilerplate, '\n'))
 endfunction
 
-" Map <leader>df to call the function
+" Map <leader>df to call the function.
 nnoremap <leader>df :call InsertCppBoilerplate()<CR>
 
 " Map to auto split.
@@ -127,3 +126,4 @@ colorscheme catppuccin_mocha
 if has("termguicolors")
     set termguicolors
 endif
+
