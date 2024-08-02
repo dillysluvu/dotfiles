@@ -26,7 +26,15 @@ This configuration file is a collection of settings I've compiled from various s
     ```
 
 3. Run the setup script:
-    ```sh
-    chmod +x setup.sh
-    ./setup.sh
-    ```
+
+    - For Fedora Linux or Fedora-based distributions:
+      ```sh
+      chmod +x setup.sh
+      ./setup.sh
+      ```
+
+    - For Arch Linux or Arch-based distributions:
+      ```sh
+      chmod +x setup1.sh
+      ./setup1.sh
+      ```
