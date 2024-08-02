@@ -65,22 +65,23 @@ install_version_managers() {
 
 # Function to configure user settings
 configure_user() {
+    repo_dir=$(dirname $(realpath $0))
     read -p "Do you want my v1 config or v2? (1/2): " config_version
     case "$config_version" in
         1)
-            mv ~/Projects/dotfiles/V1/nvim ~/.config/
-            mv ~/Projects/dotfiles/wezterm ~/.config/
-            mv ~/Projects/dotfiles/V1/tmux ~/.config/
-            mv ~/Projects/dotfiles/starship ~/.config/
-            mv ~/Projects/dotfiles/.zshrc $HOME
+            mv "$repo_dir/V1/nvim" ~/.config/
+            mv "$repo_dir/wezterm" ~/.config/
+            mv "$repo_dir/V1/tmux" ~/.config/
+            mv "$repo_dir/starship" ~/.config/
+            mv "$repo_dir/.zshrc" $HOME
             ;;
         2)
-            mv ~/Projects/dotfiles/V2/.vim $HOME
-            mv ~/Projects/dotfiles/V2/.vimrc $HOME
-            mv ~/Projects/dotfiles/wezterm ~/.config/
-            mv ~/Projects/dotfiles/V2/tmux ~/.config/
-            mv ~/Projects/dotfiles/starship ~/.config/
-            mv ~/Projects/dotfiles/.zshrc $HOME
+            mv "$repo_dir/V2/.vim" $HOME
+            mv "$repo_dir/V2/.vimrc" $HOME
+            mv "$repo_dir/wezterm" ~/.config/
+            mv "$repo_dir/V2/tmux" ~/.config/
+            mv "$repo_dir/starship" ~/.config/
+            mv "$repo_dir/.zshrc" $HOME
             ;;
         *)
             echo "Invalid selection. Exiting."
