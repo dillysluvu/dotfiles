@@ -33,6 +33,8 @@ install_zsh() {
 install_support_tools() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+    cargo install broot 
+    cargo install skim 
 }
 
 # Function to install LazyGit
