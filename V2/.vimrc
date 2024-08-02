@@ -10,6 +10,10 @@ syntax on
 " Add numbers to each line on the left-hand side.
 set number
 
+" Toggle line numbers with F2
+nnoremap <F2> :set number!<CR>
+vnoremap <F2> :set number!<CR>
+
 " Set indentation options.
 set shiftwidth=4
 set tabstop=4
@@ -79,12 +83,17 @@ nnoremap <leader>rr :w<CR>:!clear && cd %:p:h && g++ %:t -o %:t:r && ./%:t:r<CR>
 
 " Save the current file.
 nnoremap <C-s> :w<CR>
+vnoremap <C-s> :w<CR>
 
 " Quit Vim.
 nnoremap <leader>q :q!<CR>
 
 " Ultimate remap for Esc.
 inoremap jk <Esc>
+
+" Map <leader>y to yank to the system clipboard.
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
 
 " Add freopen statements and sync settings below int main().
 map <leader>af /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "r", stdin); freopen("<C-R>=expand('%:t:r')<CR>.out", "w", stdout);
