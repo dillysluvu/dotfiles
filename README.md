@@ -1,6 +1,6 @@
 # Dotfiles
 
-This configuration file is a collection of settings I've compiled from various sources. While I can't remember all the references, you can explore and use my configuration by following these steps:
+This configuration file is a curated collection of settings from various sources. Though I can't remember all the references, two primary sources of inspiration are [omerxx's dotfiles](https://github.com/omerxx/dotfiles) and [craftzdog's dotfiles-public](https://github.com/craftzdog/dotfiles-public). Follow these steps to explore and use my configuration:
 
 ## Preview
 
@@ -14,18 +14,12 @@ This configuration file is a collection of settings I've compiled from various s
 
 ## Installation
 
-1. Initialize a directory for configuration data:
-    ```sh
-    mkdir -p ~/Projects
-    cd ~/Projects
-    ```
-
-2. Clone the configuration repository:
+1. Clone the configuration repository:
     ```sh
     git clone https://github.com/dillysluvu/dotfiles.git
     ```
 
-3. Run the setup script:
+2. Run the setup script:
 
     - For Fedora Linux or Fedora-based distributions:
       ```sh
