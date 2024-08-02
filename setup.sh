@@ -95,13 +95,20 @@ setup_asus_laptop() {
             systemd-devel libdrm-devel expat-devel pcre2-devel libzstd-devel gtk3-devel
         )
         sudo dnf install -y "${packages[@]}"
-        make
-        sudo dnf copr enable lukenukem/asus-linux -y
-        sudo dnf install asustl -y
+        sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+        sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+        sudo dnf update -y
+        sudo dnf install -y power-profiles-daemon asusctl supergfxctl rog-control-center
+        sudo systemctl enable power-profiles-daemon
+        sudo systemctl start power-profiles-daemon
+        sudo systemctl enable asusd
+        sudo systemctl start asusd
+        sudo systemctl enable supergfxd
+        sudo systemctl start supergfxd
     fi
 }
 
-# Prompt the user to install Flatpak and add Flathub repository
+# Function to prompt the user to install Flatpak and add Flathub repository
 setup_flatpak() {
     read -p "Do you want to install some Flatpak apps? (yes/no): " install_flatpak
     if [[ "$install_flatpak" == "yes" ]]; then
@@ -131,18 +138,18 @@ setup_flatpak() {
                 "org.gnome.gitlab.somas.Apostrophe"
             )
         
-            read -p "Would you like to install any Flatpak apps? (yes/no): " install_all
+            read -p "Would you like to install all Flatpak apps? (yes/no): " install_all
         
             if [[ "$install_all" == "yes" ]]; then
                 for app in "${apps[@]}"; do
-                    flatpak install -y flathub $app
+                    flatpak install -y flathub "$app"
                 done
                 echo "All apps have been installed."
             else
                 for app in "${apps[@]}"; do
                     read -p "Do you want to install $app? (yes/no): " response
                     if [[ "$response" == "yes" ]]; then
-                        flatpak install -y flathub $app
+                        flatpak install -y flathub "$app"
                     else
                         echo "Skipping $app"
                     fi
