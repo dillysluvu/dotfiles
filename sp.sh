@@ -23,6 +23,7 @@ install_zsh() {
         sudo pacman -S --noconfirm zsh
     fi
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    mkdir -p ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
     git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     git clone https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-bat
@@ -33,15 +34,18 @@ install_zsh() {
 install_support_tools() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+    cargo install skim
+    cargo install broot
 }
 
 # Function to install LazyGit
 install_lazygit() {
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
+    TEMP_FILE=$(mktemp)
+    curl -Lo "$TEMP_FILE" "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf "$TEMP_FILE" lazygit
     sudo install lazygit /usr/local/bin
-    rm -f lazygit.tar.gz lazygit
+    rm -f "$TEMP_FILE" lazygit
 }
 
 # Function to install Tmux and dependencies
@@ -86,22 +90,23 @@ configure_user() {
     esac
 }
 
-# Function to handle Fedora Linux base and ASUS laptop specific setup
+# Function to handle ASUS laptop specific setup
 setup_asus_laptop() {
-    read -p "Do you use Fedora Linux base and ASUS laptop? (yes/no): " response
+    read -p "Do you use an ASUS laptop? (yes/no): " response
     if [[ "$response" == "yes" ]]; then
         local packages=(
-            cmake clang-devel libinput-devel libseat-devel libgbm-devel libxkbcommon-devel
-            systemd-devel libdrm-devel expat-devel pcre2-devel libzstd-devel gtk3-devel base-devel git
+            cmake clang libinput libseat libgbm libxkbcommon systemd libdrm expat pcre2 zstd gtk3 base-devel git
         )
         sudo pacman -S --noconfirm "${packages[@]}"
         sudo pacman -S power-profiles-daemon
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        makepkg -si
+        if ! command -v yay &> /dev/null; then
+            git clone https://aur.archlinux.org/yay.git
+            cd yay
+            makepkg -si
+            cd ..
+            rm -rf yay
+        fi
         yay -S asusctl supergfxctl rog-control-center
-        cd ..
-        rm -rf yay
 
         sudo systemctl enable --now power-profiles-daemon.service
         sudo systemctl enable --now supergfxd.service
@@ -113,7 +118,9 @@ setup_asus_laptop() {
 setup_flatpak() {
     read -p "Do you want to install some Flatpak apps? (yes/no): " install_flatpak
     if [[ "$install_flatpak" == "yes" ]]; then
-        sudo pacman -S --noconfirm flatpak
+        if ! command -v flatpak &> /dev/null; then
+            sudo pacman -S --noconfirm flatpak
+        fi
         sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
         local apps=(
@@ -175,3 +182,4 @@ setup_flatpak
 
 # Source the new .zshrc if it exists
 [ -f ~/.zshrc ] && source ~/.zshrc
+
