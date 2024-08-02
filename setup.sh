@@ -35,6 +35,7 @@ install_support_tools() {
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
     cargo install broot 
     cargo install skim 
+    cargo install tlrc
 }
 
 # Function to install LazyGit
