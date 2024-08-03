@@ -1,8 +1,8 @@
 # Dotfiles
 
-This configuration file is a curated collection of settings from various sources. Though I can't remember all the references, two primary sources of inspiration are [omerxx's dotfiles](https://github.com/omerxx/dotfiles) and [craftzdog's dotfiles-public](https://github.com/craftzdog/dotfiles-public). Follow these steps to explore and use my configuration:
+I've tailored my dotfiles to suit my preferences, drawing inspiration from the public dotfiles of [omerxx](https://github.com/omerxx/dotfiles) and [craftzdog](https://github.com/craftzdog/dotfiles-public). . If you're interested in checking out my setup, follow these steps:
 
-## Preview
+## Overview
 
 **Version 1:**
 
@@ -12,14 +12,14 @@ This configuration file is a curated collection of settings from various sources
 
 ![3](https://github.com/user-attachments/assets/411c6a41-badc-4d0e-9d9f-a6bcbddd137a)
 
-## Installation
+## Installation Guide
 
-1. Clone the configuration repository:
+1. Begin by cloning the configuration repository:
     ```sh
     git clone https://github.com/dillysluvu/dotfiles.git
     ```
 
-2. Run the setup script:
+2. Execute the setup script based on your Linux distribution:
 
     - For Fedora Linux or Fedora-based distributions:
       ```sh
