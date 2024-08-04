@@ -12,7 +12,7 @@ update_system() {
 install_packages() {
     local packages=(
         git npm rust curl make bison gcc glibc zsh fzf ripgrep fd bat wezterm tmux
-        libevent ncurses base-devel pkgconf neovim unrar
+        libevent ncurses base-devel pkgconf neovim unrar lazygit
     )
     sudo pacman -S --noconfirm "${packages[@]}"
 }
@@ -37,16 +37,6 @@ install_support_tools() {
     cargo install skim
     cargo install broot
     cargo install tlrc
-}
-
-# Function to install LazyGit
-install_lazygit() {
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    TEMP_FILE=$(mktemp)
-    curl -Lo "$TEMP_FILE" "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf "$TEMP_FILE" lazygit
-    sudo install lazygit /usr/local/bin
-    rm -f "$TEMP_FILE" lazygit
 }
 
 # Function to install Tmux and dependencies
@@ -174,7 +164,6 @@ update_system
 install_packages
 install_zsh
 install_support_tools
-install_lazygit
 install_tmux
 install_starship
 install_version_managers
