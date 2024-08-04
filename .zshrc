@@ -49,9 +49,6 @@ alias dnf='dnf5'
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
-# Source broot launcher
-source /home/mcv/.config/broot/launcher/bash/br
-
 # Add zsh functions path
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
