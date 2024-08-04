@@ -128,7 +128,7 @@ setup_flatpak() {
                 "com.github.neithern.g4music"
                 "com.github.tchx84.Flatseal"
                 "com.github.wwmm.easyeffects"
-                "com.github.jakeman.ExtensionManager"
+                "com.mattjakeman.ExtensionManager"
                 "dev.vencord.Vesktop"
                 "garden.jamie.Morphosis"
                 "io.bassi.Amberol"
@@ -141,7 +141,6 @@ setup_flatpak() {
                 "org.gnome.Extensions"
                 "org.gnome.gitlab.somas.Apostrophe"
             )
-        
             read -p "Would you like to install all Flatpak apps? (yes/no): " install_all
         
             if [[ "$install_all" == "yes" ]]; then
