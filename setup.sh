@@ -23,10 +23,11 @@ install_packages() {
 install_zsh() {
     sudo dnf install -y zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-bat
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins
+    git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "$ZSH_CUSTOM/you-should-use"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/zsh-syntax-highlighting"
+    git clone https://github.com/fdellwing/zsh-bat.git "$ZSH_CUSTOM/zsh-bat"
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/zsh-autosuggestions"
 }
 
 # Function to install support tools
@@ -65,7 +66,7 @@ install_version_managers() {
 
 # Function to configure user settings
 configure_user() {
-    repo_dir=$(dirname $(realpath $0))
+    repo_dir=$(dirname "$(realpath "$0")")
     read -p "Do you want my v1 config or v2? (1/2): " config_version
     case "$config_version" in
         1)
@@ -73,15 +74,16 @@ configure_user() {
             mv "$repo_dir/wezterm" ~/.config/
             mv "$repo_dir/V1/tmux" ~/.config/
             mv "$repo_dir/starship" ~/.config/
-            mv "$repo_dir/.zshrc" $HOME
+            mv "$repo_dir/.zshrc" "$HOME"
             ;;
         2)
-            mv "$repo_dir/V2/.vim" $HOME
-            mv "$repo_dir/V2/.vimrc" $HOME
+            mv "$repo_dir/V2/.vim" "$HOME"
+            mv "$repo_dir/V2/.vimrc" "$HOME"
             mv "$repo_dir/wezterm" ~/.config/
             mv "$repo_dir/V2/tmux" ~/.config/
             mv "$repo_dir/starship" ~/.config/
-            mv "$repo_dir/.zshrc" $HOME
+            mv "$repo_dir/V1/nvim" ~/.config/
+            mv "$repo_dir/.zshrc" "$HOME"
             ;;
         *)
             echo "Invalid selection. Exiting."
