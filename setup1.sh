@@ -12,9 +12,14 @@ update_system() {
 install_packages() {
     local packages=(
         git npm rust curl make bison gcc glibc zsh fzf ripgrep fd bat wezterm tmux
-        libevent ncurses base-devel pkgconf neovim unrar lazygit yazi gnome-menus cmake
+        libevent ncurses base-devel pkgconf neovim unrar lazygit yazi gnome-menus cmake python-nautilus
     )
     sudo pacman -S --noconfirm "${packages[@]}"
+}
+
+# Function to remove unwanted packages
+remove_unwanted_packages() {
+    sudo pacman -Rns --noconfirm gedit gnome-terminal
 }
 
 # Function to install Zsh and Oh My Zsh
@@ -35,9 +40,7 @@ install_zsh() {
 install_support_tools() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-    cargo install skim
-    cargo install broot
-    cargo install tlrc
+    cargo install skim broot tlrc
 }
 
 # Function to install Tmux and dependencies
@@ -101,7 +104,7 @@ setup_asus_laptop() {
             cd ..
             rm -rf yay
         fi
-        yay -S asusctl supergfxctl rog-control-center
+        yay -S --noconfirm asusctl supergfxctl rog-control-center
 
         sudo systemctl enable --now power-profiles-daemon.service
         sudo systemctl enable --now supergfxd.service
@@ -162,6 +165,7 @@ setup_flatpak() {
 # Main script execution
 update_system
 install_packages
+remove_unwanted_packages
 install_zsh
 install_support_tools
 install_tmux
