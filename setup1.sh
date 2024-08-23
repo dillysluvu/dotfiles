@@ -12,7 +12,7 @@ update_system() {
 install_packages() {
     local packages=(
         git npm rust curl make bison gcc glibc zsh fzf ripgrep fd bat wezterm tmux
-        libevent ncurses base-devel pkgconf neovim unrar lazygit yazi
+        libevent ncurses base-devel pkgconf neovim unrar lazygit yazi gnome-menus cmake
     )
     sudo pacman -S --noconfirm "${packages[@]}"
 }
@@ -128,11 +128,8 @@ setup_flatpak() {
             "com.mattjakeman.ExtensionManager"
             "dev.vencord.Vesktop"
             "garden.jamie.Morphosis"
-            "io.bassi.Amberol"
             "io.github.getnf.embellish"
-            "com.github.wiiznokes.fan-control"
             "io.gitlab.adhami3310.Converter"
-            "io.github.missioncenter.MissionCenter"
             "it.mijorus.gearlever"
             "org.freac.freac"
             "org.gnome.Extensions"
