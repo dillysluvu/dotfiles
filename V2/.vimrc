@@ -1,13 +1,13 @@
 " Disable compatibility with vi
 set nocompatible
 
-" Enable file type detection and related settings
+" Enable file type detection, plugins, and indentation
 filetype plugin indent on
 
-" Turn syntax highlighting on
+" Turn on syntax highlighting
 syntax on
 
-" Line numbers settings
+" Line number settings and toggling
 set number
 nnoremap <F2> :set number!<CR>
 vnoremap <F2> :set number!<CR>
@@ -18,25 +18,27 @@ set tabstop=4
 set expandtab
 
 " General editing settings
-set noshowmatch
-set nobackup
-set scrolloff=10
-set nowrap
+set noshowmatch       " Disable matching bracket highlighting
+set nobackup          " Disable backup files
+set scrolloff=10      " Keep 10 lines visible when scrolling
+set nowrap            " Disable line wrapping
 
 " Search settings
-set incsearch
-set ignorecase
-set smartcase
-set hlsearch
+set incsearch         " Incremental search
+set ignorecase        " Ignore case when searching
+set smartcase         " Override ignorecase if search pattern contains uppercase
+set hlsearch          " Highlight search results
 
-" Show command modes
-set showcmd
-set showmode
+" Command mode settings
+set showcmd           " Display incomplete commands
+set showmode          " Display current mode
 
 " History and completion settings
-set history=1000
-set wildmenu
+set history=1000      " Increase command history size
+set wildmenu          " Enable command-line completion wildmenu
 set wildmode=list:longest
+
+set magic             " Enable enhanced regular expression syntax (default behavior)
 
 " Ignore certain file extensions in wildmenu
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
@@ -59,7 +61,7 @@ nnoremap <C-a> gg<S-v>G
 " Tab management key mappings
 nnoremap <leader>te :tabedit<CR>
 nnoremap <leader>t  :tabnext<CR>
-nnoremap <leader>T :tabprev<CR>
+nnoremap <leader>T  :tabprev<CR>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tc :tabclose<CR>
 
@@ -75,15 +77,19 @@ nnoremap <silent> <leader><Down> :resize -1<CR>
 
 " Replace text using the word under the cursor
 nnoremap <leader>rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-vnoremap <leader>rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+vnoremap <leader>rs :s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Open file explorer
 nnoremap <leader>e :Ex<CR>
+
+" Close current buffer
 nnoremap <leader>g :bd<CR>
 
 " File searching
-nnoremap <silent> <leader>f :FZF<CR>
-nnoremap <silent> <leader>fh :FZF ~<CR>
+nnoremap <silent> <leader>f :Files<CR>
+
+" Show all maps
+nnoremap <C-?> :Maps<CR>
 
 " Compile and run C++ script
 nnoremap <leader>rr :w<CR>:!clear && cd %:p:h && g++ %:t -o %:t:r && ./%:t:r<CR>
@@ -98,7 +104,7 @@ nnoremap <leader>q :q!<CR>
 " Ultimate remap for Esc
 inoremap jk <Esc>
 
-" Ultimate map 
+" Map for removing everything before and after a slash
 nnoremap <leader>rm 0f/d$
 
 " Add freopen statements and sync settings below int main()
@@ -109,14 +115,15 @@ function! InsertCppBoilerplate()
     let boilerplate = "#include <bits/stdc++.h>\n\n"
     let boilerplate .= "using namespace std;\n\n"
     let boilerplate .= "int main() {\n"
-    let boilerplate .= "    ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);\n\n"
+    let boilerplate .= "    ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);\n"
+    let boilerplate .= "     \n"
     let boilerplate .= "    return 0;\n"
     let boilerplate .= "}\n"
     call setline(1, split(boilerplate, '\n'))
 endfunction
 
 " Map <leader>df to call the function
-nnoremap <leader>df :call InsertCppBoilerplate()<CR>
+nnoremap <leader>df :call InsertCppBoilerplate()<CR>6j5l
 
 " Auto split mapping
 nnoremap <leader>sp :vsplit<CR><C-w>l:split<CR><C-w>h:vertical resize +32<CR>
@@ -126,8 +133,11 @@ call plug#begin()
   Plug 'catppuccin/vim', { 'as': 'catppuccin' }
   Plug 'nanotee/zoxide.vim'
   Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
   Plug 'ycm-core/YouCompleteMe'
-  Plug 'codota/tabnine-vim'
+  Plug 'dense-analysis/ale'
+  Plug 'jiangmiao/auto-pairs' 
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Enable syntax highlighting and set colorscheme
@@ -139,4 +149,3 @@ colorscheme catppuccin_mocha
 if has("termguicolors")
     set termguicolors
 endif
-
