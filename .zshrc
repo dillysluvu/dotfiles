@@ -43,7 +43,7 @@ export NVM_DIR="$HOME/.nvm"
 eval $(thefuck --alias fuck)
 
 # Add aliases
-alias dnf='dnf5'
+alias hx='helix'
 
 # Initialize Atuin
 . "$HOME/.atuin/bin/env"

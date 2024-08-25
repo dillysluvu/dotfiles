@@ -113,9 +113,8 @@ nnoremap <leader>af /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "
 " Function to insert C++ boilerplate code
 function! InsertCppBoilerplate()
     let boilerplate = "#include <bits/stdc++.h>\n\n"
-    let boilerplate .= "using namespace std;\n\n"
     let boilerplate .= "int main() {\n"
-    let boilerplate .= "    ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);\n"
+    let boilerplate .= "    std::ios_base::sync_with_stdio(false); std::cin.tie(nullptr); std::cout.tie(nullptr);\n"
     let boilerplate .= "     \n"
     let boilerplate .= "    return 0;\n"
     let boilerplate .= "}\n"
@@ -138,6 +137,7 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'jiangmiao/auto-pairs' 
   Plug 'tpope/vim-fugitive'
+  Plug 'codota/tabnine-vim'
 call plug#end()
 
 " Enable syntax highlighting and set colorscheme
