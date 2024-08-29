@@ -65,10 +65,6 @@ nnoremap <leader>T  :tabprev<CR>
 nnoremap <leader>tn :tabnew<CR>
 nnoremap <leader>tc :tabclose<CR>
 
-" Split window management
-nnoremap <leader>s :split<CR>
-nnoremap <leader>v :vsplit<CR>
-
 " Resize window key mappings
 nnoremap <silent> <leader><Left> :vertical resize -1<CR>
 nnoremap <silent> <leader><Right> :vertical resize +1<CR>
@@ -122,10 +118,10 @@ function! InsertCppBoilerplate()
 endfunction
 
 " Map <leader>df to call the function
-nnoremap <leader>df :call InsertCppBoilerplate()<CR>6j5l
+nnoremap <leader>df :call InsertCppBoilerplate()<CR>4j5li
 
-" Auto split mapping
-nnoremap <leader>sp :vsplit<CR><C-w>l:split<CR><C-w>h:vertical resize +32<CR>
+" Launch Codeium
+nnoremap <leader>ai :call codeium#Chat()<CR>
 
 " Vim-Plug plugin manager setup
 call plug#begin()
@@ -133,11 +129,10 @@ call plug#begin()
   Plug 'nanotee/zoxide.vim'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  Plug 'ycm-core/YouCompleteMe'
   Plug 'dense-analysis/ale'
   Plug 'jiangmiao/auto-pairs' 
   Plug 'tpope/vim-fugitive'
-  Plug 'codota/tabnine-vim'
+  Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 call plug#end()
 
 " Enable syntax highlighting and set colorscheme
