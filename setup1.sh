@@ -176,6 +176,7 @@ setup_flatpak() {
             "org.gnome.Cheese"
             "org.kde.kamoso"
             "org.mozilla.Thunderbird"
+            "io.github.amit9838.mousam"
         )
 
         read -p "Would you like to install all Flatpak apps? (yes/no): " install_all
