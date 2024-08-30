@@ -137,6 +137,9 @@ setup_flatpak() {
             "org.freac.freac"
             "org.gnome.Extensions"
             "org.gnome.gitlab.somas.Apostrophe"
+            "org.gnome.Cheese"
+            "org.kde.kamoso"
+            "org.mozilla.Thunderbird"
         )
 
         read -p "Would you like to install all Flatpak apps? (yes/no): " install_all
