@@ -17,7 +17,7 @@ function M.cowboy()
 					icon = "🤠",
 					replace = id,
 					keep = function()
-						return count >= 10
+						return count >= 140208
 					end,
 				})
 				if not ok then
