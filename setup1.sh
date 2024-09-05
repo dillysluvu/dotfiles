@@ -4,7 +4,7 @@ set -euxo pipefail
 
 # Check if the required command exists
 command_exists() {
-    command -v "$1" &> /dev/null
+    type "$1" &> /dev/null
 }
 
 # Function to update and upgrade the system
