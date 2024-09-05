@@ -4,15 +4,29 @@ set -euxo pipefail
 
 # Check if the required command exists
 command_exists() {
-    type "$1" &> /dev/null
+    command -v "$1" &> /dev/null
+}
+
+# Function to install yay if not present
+install_yay() {
+    if ! command_exists yay; then
+        echo "Installing yay AUR helper..."
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si --noconfirm
+        cd ..
+        rm -rf yay
+    else
+        echo "yay is already installed."
+    fi
 }
 
 # Function to update and upgrade the system
 update_system() {
-    if command_exists pacman; then
-        sudo pacman -Syu --noconfirm
+    if command_exists yay; then
+        yay -Syu --noconfirm
     else
-        echo "Pacman not found. Please run this script on an Arch-based system."
+        echo "yay not found. Please ensure yay is installed."
         exit 1
     fi
 }
@@ -22,20 +36,21 @@ install_packages() {
     local packages=(
         git npm rust curl make bison gcc glibc zsh fzf ripgrep fd bat wezterm tmux
         libevent ncurses base-devel pkgconf neovim unrar lazygit yazi gnome-menus cmake python-nautilus
+        thorium-browser-bin wps-office thefuck
     )
-    sudo pacman -S --noconfirm "${packages[@]}"
+    yay -S --noconfirm "${packages[@]}"
 }
 
 # Function to remove unwanted packages
 remove_unwanted_packages() {
-    sudo pacman -Rns --noconfirm gedit gnome-terminal || true
+    yay -Rns --noconfirm gedit gnome-terminal || true
 }
 
 # Function to install Zsh and Oh My Zsh
 install_zsh() {
     if ! command_exists zsh; then
         echo "Installing Zsh..."
-        sudo pacman -S --noconfirm zsh
+        yay -S --noconfirm zsh
     else
         echo "Zsh is already installed."
     fi
@@ -65,7 +80,7 @@ install_zsh() {
 install_support_tools() {
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh || true
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh || true
-    cargo install skim broot tlrc || true
+    cargo install skim tlrc || true
 }
 
 # Function to install Tmux and dependencies
@@ -131,15 +146,8 @@ setup_asus_laptop() {
         local packages=(
             cmake clang libinput libseat libgbm libxkbcommon systemd libdrm expat pcre2 zstd gtk3 base-devel git
         )
-        sudo pacman -S --noconfirm "${packages[@]}"
-        sudo pacman -S --noconfirm power-profiles-daemon || true
-        if ! command_exists yay; then
-            git clone https://aur.archlinux.org/yay.git
-            cd yay
-            makepkg -si || true
-            cd ..
-            rm -rf yay
-        fi
+        yay -S --noconfirm "${packages[@]}"
+        yay -S --noconfirm power-profiles-daemon || true
         yay -S --noconfirm asusctl supergfxctl rog-control-center || true
 
         sudo systemctl enable --now power-profiles-daemon.service || true
@@ -153,7 +161,7 @@ setup_flatpak() {
     read -p "Do you want to install some Flatpak apps? (yes/no): " install_flatpak
     if [[ "$install_flatpak" == "yes" ]]; then
         if ! command_exists flatpak; then
-            sudo pacman -S --noconfirm flatpak
+            yay -S --noconfirm flatpak
         fi
         sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
@@ -203,6 +211,7 @@ setup_flatpak() {
 }
 
 # Main script execution
+install_yay
 update_system
 install_packages
 remove_unwanted_packages
