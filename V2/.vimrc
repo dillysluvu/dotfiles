@@ -7,10 +7,12 @@ filetype plugin indent on
 " Turn on syntax highlighting
 syntax on
 
-" Line number settings and toggling
+" Line number settings
 set number
-nnoremap <F2> :set number!<CR>
-vnoremap <F2> :set number!<CR>
+nnoremap <F2> :set number!<CR>  " Toggle line numbers
+
+" Enable mouse support
+set mouse=a
 
 " Indentation settings
 set shiftwidth=4
@@ -22,12 +24,14 @@ set noshowmatch       " Disable matching bracket highlighting
 set nobackup          " Disable backup files
 set scrolloff=10      " Keep 10 lines visible when scrolling
 set nowrap            " Disable line wrapping
+set lazyredraw        " Prevent screen redraw during macros
 
 " Search settings
 set incsearch         " Incremental search
 set ignorecase        " Ignore case when searching
 set smartcase         " Override ignorecase if search pattern contains uppercase
 set hlsearch          " Highlight search results
+set nowrapscan        " Don't wrap search at end of file
 
 " Command mode settings
 set showcmd           " Display incomplete commands
@@ -37,8 +41,7 @@ set showmode          " Display current mode
 set history=1000      " Increase command history size
 set wildmenu          " Enable command-line completion wildmenu
 set wildmode=list:longest
-
-set magic             " Enable enhanced regular expression syntax (default behavior)
+set magic             " Enable enhanced regular expression syntax
 
 " Ignore certain file extensions in wildmenu
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
@@ -50,10 +53,10 @@ set clipboard=unnamedplus
 let mapleader=" "
 
 " Window management key mappings
-nnoremap <leader>j <C-w>j
-nnoremap <leader>k <C-w>k
-nnoremap <leader>h <C-w>h
-nnoremap <leader>l <C-w>l
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wl <C-w>l
 
 " Select all text in the current buffer
 nnoremap <C-a> gg<S-v>G
@@ -76,7 +79,7 @@ nnoremap <leader>rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 vnoremap <leader>rs :s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Open file explorer
-nnoremap <leader>e :Ex<CR>
+nnoremap <leader>e :Ex<CR> 
 
 " Close current buffer
 nnoremap <leader>g :bd<CR>
@@ -109,8 +112,11 @@ nnoremap <leader>af /int main() {<CR>ofreopen("<C-R>=expand('%:t:r')<CR>.inp", "
 " Function to insert C++ boilerplate code
 function! InsertCppBoilerplate()
     let boilerplate = "#include <bits/stdc++.h>\n\n"
+    let boilerplate .= "#pragma GCC optimize(\"O3,unroll-loops\")\n"
+    let boilerplate .= "#pragma GCC target(\"avx2,bmi,bmi2,lzcnt,popcnt\")\n\n"
+    let boilerplate .= "using namespace std;\n\n"
     let boilerplate .= "int main() {\n"
-    let boilerplate .= "    std::ios_base::sync_with_stdio(false); std::cin.tie(nullptr); std::cout.tie(nullptr);\n"
+    let boilerplate .= "    ios_base::sync_with_stdio(false);   cin.tie(nullptr); cout.tie(nullptr);\n"
     let boilerplate .= "     \n"
     let boilerplate .= "    return 0;\n"
     let boilerplate .= "}\n"
@@ -118,7 +124,7 @@ function! InsertCppBoilerplate()
 endfunction
 
 " Map <leader>df to call the function
-nnoremap <leader>df :call InsertCppBoilerplate()<CR>4j5li
+nnoremap <leader>df :call InsertCppBoilerplate()<CR>9j5li
 
 " Launch Codeium
 nnoremap <leader>ai :call codeium#Chat()<CR>
@@ -132,6 +138,7 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   Plug 'jiangmiao/auto-pairs' 
   Plug 'tpope/vim-fugitive'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 call plug#end()
 
@@ -144,3 +151,7 @@ colorscheme catppuccin_mocha
 if has("termguicolors")
     set termguicolors
 endif
+
+" Performance optimizations
+set timeoutlen=500            " Reduce timeout for mapped sequences
+set updatetime=300            " Reduce time for update events
