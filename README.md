@@ -5,8 +5,7 @@ I've tailored my dotfiles to suit my preferences, drawing inspiration from the p
 ## Overview
 
 **Version 1:**
-
-![1](https://github.com/dillysluvu/dotfiles/assets/141432067/d2397d91-2256-45f2-8c54-ad1a8af78bcc) ![2](https://github.com/dillysluvu/dotfiles/assets/141432067/09151b5c-c7d2-40c2-83d9-d315b4ea0b3f)
+![1](https://github.com/dillysluvu/dotfiles/assets/141432067/d2397d91-2256-45f2-8c54-ad1a8af78bcc) ![2](https://github.com/dillysluvu/dotfiles/assets/141432067/09151b5c-c7d2-40c2-83d9-d315b4ea0b3f) ![3](https://github.com/user-attachments/assets/c64d872c-1179-4242-9974-308db3afd085)
 
 **Version 2:**
 
