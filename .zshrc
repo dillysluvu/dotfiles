@@ -1,56 +1,61 @@
-# Path to your oh-my-zsh installation.
+# Path to your oh-my-zsh installation
 export ZSH="$HOME/.oh-my-zsh"
 
-# Add local bin to PATH
+# Add local bin to PATH for custom binaries
 export PATH="$HOME/.local/bin:$PATH"
 
-# Set name of the theme to load
+# Set the theme for oh-my-zsh
 ZSH_THEME="apple"
 
-# Plugins
+# Load plugins
 plugins=(
-  git
-  you-should-use
+  git                    
+  you-should-use        
   zsh-syntax-highlighting
-  zsh-autosuggestions
-  zsh-bat
+  zsh-autosuggestions   
+  zsh-bat              
 )
 
-source $ZSH/oh-my-zsh.sh
+# Source oh-my-zsh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
+
+# Initialize tools
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # Add custom paths
-export PATH="$PATH:/opt/nvim/:/home/mcv/depot_tools"
-export PKG_CONFIG_PATH=/usr/lib/pkgconfig
-export HELIX_RUNTIME=~/src/helix/runtime
-export STARSHIP_CONFIG=/home/mcv/.config/starship/starship.toml
+export PATH="$PATH:/opt/nvim:/home/mcv/depot_tools"
+export PKG_CONFIG_PATH="/usr/lib/pkgconfig"
+export HELIX_RUNTIME="$HOME/src/helix/runtime"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export GDK_BACKEND="wayland"
 
-# Initialize Go version manager (GVM)
-[[ -s "/home/mcv/.gvm/scripts/gvm" ]] && source "/home/mcv/.gvm/scripts/gvm"
-
-# Initialize Node Version Manager (NVM)
+# Initialize version managers
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
-# Initialize fzf key bindings and fuzzy completion
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Initialize fzf
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
-# Initialize thefuck
-eval $(thefuck --alias fuck)
+# Initialize `thefuck`
+eval "$(thefuck --alias fuck)"
 
-# Add aliases
-alias hx='helix'
+# Aliases
+alias hx='helix'  
+alias ls='eza'   
+alias sauto='f() { source ~/auto.sh && auto "$1"; }; f'
 
 # Initialize Atuin
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
-# Add zsh functions path
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+# Add custom Zsh functions directory to fpath
+fpath+=("${ZDOTDIR:-$HOME}/.zsh_functions")
 
-# Make Vim as default editor
-export EDITOR=vim
+# Set Vim as the default editor
+export EDITOR="vim"
+
