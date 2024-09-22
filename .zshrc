@@ -48,6 +48,7 @@ eval "$(thefuck --alias fuck)"
 alias hx='helix'  
 alias ls='eza'   
 alias sauto='f() { source ~/auto.sh && auto "$1"; }; f'
+alias debug='g++ debug.cpp -o debug && ./debug'
 
 # Initialize Atuin
 . "$HOME/.atuin/bin/env"
